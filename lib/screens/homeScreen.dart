@@ -1,15 +1,27 @@
+import 'package:due/models/deudor.dart';
 import 'package:due/widgets/header.dart';
-import 'package:due/widgets/popUpMenu.dart';
 import 'package:due/widgets/popUpMenuAdd.dart';
 import 'package:due/widgets/slivers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/onboard_content.dart';
+import '../widgets/popUpInterface.dart';
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  void cambiarEstado(){
+    setState(() {
+      
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +33,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
      floatingActionButton: FloatingActionButton(onPressed: (){
+      
          showCupertinoModalPopup(
       context: context, 
       builder: (context){
-        return Container(
-          height: double.maxFinite,
-          width: double.maxFinite,
-          child: Stack(
-            children: [
-              Positioned(
-                right: 17,
-                bottom: 79,
-                child: popUpMenu(),
-              ),
-            ],
-          ),
-        );
+        return interfacePopUp(callback: cambiarEstado,);
       }
     );
-  
+    
      },
      child: popUpAgregar(child: Icon(Icons.add, key: GlobalKey(),color: Color.fromARGB(255, 87, 87, 87),)),
      backgroundColor: Color(0xffBDF2F2),), 

@@ -1,8 +1,16 @@
+import 'package:due/models/producto.dart';
 import 'package:flutter/material.dart';
 
-class Addproduct_content extends StatelessWidget {
-  const Addproduct_content({Key? key}) : super(key: key);
+class Addproduct_content extends StatefulWidget {
+  const Addproduct_content({Key? key, required this.callback}) : super(key: key);
+  final VoidCallback callback;
+  @override
+  State<Addproduct_content> createState() => _Addproduct_contentState();
+}
 
+class _Addproduct_contentState extends State<Addproduct_content> {
+  final precioController = TextEditingController();
+  final _nombreController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +32,8 @@ class Addproduct_content extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
-                      child: const TextField(
+                      child:  TextField(
+                        controller: _nombreController,
                         cursorColor: Color.fromARGB(255, 69, 246, 246),
                         decoration: InputDecoration(
                         hintText: "Producto",
@@ -49,7 +58,8 @@ class Addproduct_content extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(50))
                   ),
-                  child: const TextField(
+                  child:  TextField(
+                    controller: precioController,
                     cursorColor: Color.fromARGB(255, 69, 246, 246),
                     decoration: InputDecoration(
                       hintText: "Monto",
@@ -73,7 +83,12 @@ class Addproduct_content extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Color(0xff262626)),
                     ),
-                    onPressed: () {  },
+                    onPressed: () {
+                      agregarProducto(_nombreController.text, double.tryParse(precioController.text)??0);
+                      print(productos.length);
+                      widget.callback();
+                      Navigator.pop(context);
+                      },
                     child: Text('Añadir', style: TextStyle(color: Colors.white),)
                     ),
                 ),

@@ -1,10 +1,21 @@
+
+import 'package:due/models/deudor.dart';
 import 'package:flutter/material.dart';
 
-class AddClient_content extends StatelessWidget {
-  const AddClient_content({Key? key}) : super(key: key);
+class AddClient_content extends StatefulWidget {
+  const AddClient_content({Key? key, required this.callback}) : super(key: key);
+  final VoidCallback callback;
+  @override
+  State<AddClient_content> createState() => _AddClient_contentState();
+}
+
+class _AddClient_contentState extends State<AddClient_content> {
+  final _montoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+  
+  final _nombreController = new TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
       child: SingleChildScrollView(
@@ -24,7 +35,8 @@ class AddClient_content extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
-                      child: const TextField(
+                      child:  TextField(
+                        controller: _nombreController,
                         cursorColor: Color.fromARGB(255, 69, 246, 246),
                         decoration: InputDecoration(
                         hintText: "Nombre",
@@ -49,7 +61,9 @@ class AddClient_content extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(50))
                   ),
-                  child: const TextField(
+                  child:  TextField(
+                    controller: _montoController,
+                    keyboardType: TextInputType.number,
                     cursorColor: Color.fromARGB(255, 69, 246, 246),
                     decoration: InputDecoration(
                       hintText: "Monto",
@@ -73,7 +87,16 @@ class AddClient_content extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Color(0xff262626)),
                     ),
-                    onPressed: () {  },
+                    onPressed: () { 
+                      double mont =double.tryParse(_montoController.text)??0;
+                      setState(() {
+                      agregardeudor(_nombreController.text, mont);
+                      });
+                      print(deudores.length);
+                      widget.callback();
+                      Navigator.pop(context);
+
+                      },
                     child: Text('Añadir', style: TextStyle(color: Colors.white),)
                     ),
                 ),

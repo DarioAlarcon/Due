@@ -1,13 +1,45 @@
-import 'package:due/listas/listasdeudore.dart';
+
+import 'package:due/test/testiDynamicTile.dart';
 import 'package:flutter/material.dart';
 
-class SliverFunction extends StatelessWidget {
-  const SliverFunction({super.key});
+import '../models/deudor.dart';
+
+class SliverFunction extends StatefulWidget {
+   SliverFunction({super.key});
+
+  @override
+  State<SliverFunction> createState() => _SliverFunctionState();
+}
+
+class _SliverFunctionState extends State<SliverFunction> {
+  void addItemToList() {
+    setState(() {
+    });
+  }
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+ 
+
+  void filterList(String searchText) {
+    setState(() {
+      filteredList = deudores
+          .where((item) =>
+              item.nombre.contains(searchText))
+          .toList();
+    });
+  }
+
+  @override
+  void initState() {
+    filteredList = deudores;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       children: [
+        
         Center(
           child: Container(
             height: 110,
@@ -30,43 +62,52 @@ class SliverFunction extends StatelessWidget {
               SliverAppBar(
                 scrolledUnderElevation: 0,
                 title: Container(
-                  margin: EdgeInsets.only(left: 10,right: 10, bottom: 10, top: 10),
+                  margin: EdgeInsets.only(
+                    left: 10,
+                    right: 10, 
+                    bottom: 10, 
+                    top: 10),
                   width: double.infinity,
                   height: 40,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(50))
                   ),
-                  child: const TextField(
-                    cursorColor: Color(0xffBDF2F2),
-                    
+                  child:  TextField(onChanged: (value) {
+                      filterList(value);
+                  },
+                  cursorColor: Color(0xffBDF2F2),
                   decoration: InputDecoration(
                     hintText: "Buscar",
                     prefixIconColor: Colors.grey,
                     prefixIcon: Icon(Icons.search),
-              enabledBorder: UnderlineInputBorder(
+                            enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent), // Cambia el color aquí
-              ),
-              focusedBorder: UnderlineInputBorder(
+                            ),
+                            focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
-              ),
-            ),
-          
+                            ),
+                          ),
+                        
                   ),
                 ),
                 backgroundColor: Color(0xffBDF2F2),
                 floating: true,
               ),
-              SliverList(delegate: 
-              SliverChildBuilderDelegate((context, index) {
-                return deudores[index];
+              SliverList( 
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return dynamicDeudorTile(
+                  name: filteredList[index].nombre, 
+                  mount: filteredList[index].monto, 
+                  cambio: addItemToList,
+                );
               },
-              childCount: deudores.length
-              )
+              childCount: filteredList.length
+              ),
               ),
               SliverToBoxAdapter(
               child: Container(
-                height: 60.0, // Ajusta la altura del espacio deseado
+                height: 60.0, 
               ),
             ),
             ],
@@ -75,4 +116,10 @@ class SliverFunction extends StatelessWidget {
       ],
     );
   }
+  
+}
+ List<Deudor> filteredList = [];
+ 
+void eliminarDeudorr(String nombre) {
+  filteredList.removeWhere((deudor) => deudor.nombre == nombre);
 }

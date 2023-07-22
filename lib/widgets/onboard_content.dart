@@ -59,7 +59,9 @@ class _OnboardContentState extends State<OnboardContent> {
                     ],
                   ),
                 ),
+                
               ),
+              indicadores()
             ],
           ),
           
@@ -90,3 +92,36 @@ class PageshowModel with ChangeNotifier{
   set Colorsecundario(Color color){
     this._colorSecundario = color;
   }}
+  class indicadores extends StatelessWidget {
+  const indicadores({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          width: 20,
+          height: 5,
+          decoration: BoxDecoration(
+          color: Provider.of<PageshowModel>(context, listen: false).currentPage <= 0.5? Colors.black:Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          width: 20,
+          height: 5,
+          decoration: BoxDecoration(
+          color: Provider.of<PageshowModel>(context, listen: false).currentPage >= 0.5? Colors.black:Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
+        )
+      ],
+    );
+  }
+}
+

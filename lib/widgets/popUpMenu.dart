@@ -65,34 +65,6 @@ class _popUpMenuState extends State<popUpMenu> with SingleTickerProviderStateMix
           child: Column(
             children: [
               OnboardContent( callback: widget.cb, changedot: cambio,),
-              GestureDetector(
-                onDoubleTap: (){
-                  cambio();
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      width: 20,
-                      height: 5,
-                      decoration: BoxDecoration(
-                      color: Provider.of<PageshowModel>(context, listen: false).currentPage == 0? Colors.black:Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      width: 20,
-                      height: 5,
-                      decoration: BoxDecoration(
-                      color: Provider.of<PageshowModel>(context, listen: false).currentPage == 1? Colors.black:Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                    )
-                  ],
-                ),
-              ),
               SizedBox(height: 15,)
             ],
           ),
@@ -105,6 +77,39 @@ class _popUpMenuState extends State<popUpMenu> with SingleTickerProviderStateMix
     _animationController.reverse().whenComplete(() {
       Navigator.of(context).pop();
     });
+  }
+}
+
+class indicadores extends StatelessWidget {
+  const indicadores({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          width: 20,
+          height: 5,
+          decoration: BoxDecoration(
+          color: Provider.of<PageshowModel>(context, listen: false).currentPage == 0? Colors.black:Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          width: 20,
+          height: 5,
+          decoration: BoxDecoration(
+          color: Provider.of<PageshowModel>(context, listen: false).currentPage == 1? Colors.black:Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
+        )
+      ],
+    );
   }
 }
 

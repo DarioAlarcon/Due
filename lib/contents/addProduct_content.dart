@@ -22,10 +22,11 @@ class _Addproduct_contentState extends State<Addproduct_content> {
             children: [
               Center(child: Text('Añadir Producto',textAlign: TextAlign.center,style: TextStyle(fontSize: 27,fontWeight: FontWeight.w500, color: Color(0xff262626)))),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               Center(
                 child: Container(
+                  
                   margin: EdgeInsets.only(top: 10),
                       height: 40,
                       decoration: const BoxDecoration(

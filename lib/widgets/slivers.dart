@@ -16,8 +16,7 @@ class _SliverFunctionState extends State<SliverFunction> {
     setState(() {
     });
   }
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
- 
+  
 
   void filterList(String searchText) {
     setState(() {

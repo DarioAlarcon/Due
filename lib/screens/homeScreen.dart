@@ -1,11 +1,8 @@
-import 'package:due/models/deudor.dart';
 import 'package:due/widgets/header.dart';
 import 'package:due/widgets/popUpMenuAdd.dart';
 import 'package:due/widgets/slivers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../widgets/popUpInterface.dart';
 
 

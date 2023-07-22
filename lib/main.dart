@@ -1,5 +1,4 @@
 import 'package:due/screens/homeScreen.dart';
-import 'package:due/test/testiDynamicTile.dart';
 import 'package:due/widgets/onboard_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

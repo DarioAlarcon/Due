@@ -1,10 +1,10 @@
 import 'package:due/models/deudor.dart';
-import 'package:due/test/dropdown.dart';
-import 'package:due/test/slideshow.dart';
+import 'package:due/widgets/dropdown.dart';
+import 'package:due/widgets/slideshow.dart';
 import 'package:due/widgets/deudorTile.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/slivers.dart';
+import 'slivers.dart';
 
 class dynamicDeudorTile extends StatefulWidget {
   const dynamicDeudorTile({super.key, required this.name, required this.mount, required this.cambio});
@@ -40,6 +40,9 @@ class _dynamicTileSDeudorTile extends State<dynamicDeudorTile>with SingleTickerP
           AnimatedContainer(
               duration: Duration(milliseconds: 400),
               width: double.infinity,
+              constraints: BoxConstraints(
+                    maxWidth: 450.0, // Establece el ancho máximo
+              ),
               height: _height,
               margin: EdgeInsets.only(bottom: 0, left: 20, right: 20),
               decoration: BoxDecoration(
@@ -103,7 +106,7 @@ class AbonoTarget extends StatelessWidget {
                 Text('El cliente pagó todo?',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: MediaQuery.of(context).size.width<330? 12.5: 16,
                   color: Color(0xff262626)
                 ),
                 ),
@@ -117,6 +120,7 @@ class AbonoTarget extends StatelessWidget {
                   child: 
                         Text('borrar cuenta',
                           style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width<330? 12.5:16,
                             color: Colors.white
                           ),
                         ),
@@ -139,7 +143,7 @@ class AbonoTarget extends StatelessWidget {
                 Text('El cliente abonó?',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: MediaQuery.of(context).size.width<330? 12.5:16,
                   color: Color(0xff262626)
                 ),
                 ),
@@ -234,7 +238,7 @@ class _AdeudoTargetState extends State<AdeudoTarget> {
                 Text('Elije',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: MediaQuery.of(context).size.width<330? 12.5:16,
                   color: Color(0xff262626)
                 ),
                 ),
@@ -320,7 +324,7 @@ class _AdeudoTargetState extends State<AdeudoTarget> {
                 Text('otro monto?',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 16,
+                  fontSize: MediaQuery.of(context).size.width<330? 12.5:16,
                   color: Color(0xff262626)
                 ),
                 ),

@@ -13,6 +13,9 @@ class DeudorTile extends StatelessWidget {
       duration: Duration(milliseconds: 200),
       height: 70,
       width: double.infinity,
+      constraints:  BoxConstraints(
+                      maxWidth: 450.0, // Establece el ancho máximo
+                    ),
       decoration: BoxDecoration(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16), bottomLeft: expanded?Radius.circular(0):Radius.circular(16), bottomRight: expanded?Radius.circular(0):Radius.circular(16)),  
       color: Color(0xff262626),

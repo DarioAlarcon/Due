@@ -1,5 +1,5 @@
 
-import 'package:due/test/testiDynamicTile.dart';
+import 'package:due/widgets/testiDynamicTile.dart';
 import 'package:flutter/material.dart';
 
 import '../models/deudor.dart';
@@ -29,6 +29,7 @@ class _SliverFunctionState extends State<SliverFunction> {
 
   @override
   void initState() {
+    deudores;
     filteredList = deudores;
     super.initState();
   }
@@ -60,34 +61,40 @@ class _SliverFunctionState extends State<SliverFunction> {
             slivers: [
               SliverAppBar(
                 scrolledUnderElevation: 0,
-                title: Container(
-                  margin: EdgeInsets.only(
-                    left: 10,
-                    right: 10, 
-                    bottom: 10, 
-                    top: 10),
-                  width: double.infinity,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(50))
-                  ),
-                  child:  TextField(onChanged: (value) {
-                      filterList(value);
-                  },
-                  cursorColor: Color(0xffBDF2F2),
-                  decoration: InputDecoration(
-                    hintText: "Buscar",
-                    prefixIconColor: Colors.grey,
-                    prefixIcon: Icon(Icons.search),
-                            enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent), // Cambia el color aquí
+                title: Center(
+                  child: Container(
+                    constraints:  BoxConstraints(
+                                    maxWidth: 450.0, 
+                                  ),
+                    margin: EdgeInsets.only(
+                      left: 10,
+                      right: 10, 
+                      bottom: 10, 
+                      top: 10),
+                    width: double.infinity,
+                    height: 40,
+                    
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(50))
+                    ),
+                    child:  TextField(onChanged: (value) {
+                        filterList(value);
+                    },
+                    cursorColor: Color(0xffBDF2F2),
+                    decoration: InputDecoration(
+                      hintText: "Buscar",
+                      prefixIconColor: Colors.grey,
+                      prefixIcon: Icon(Icons.search),
+                              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent), // Cambia el color aquí
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                              ),
                             ),
-                            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                            ),
-                          ),
-                        
+                          
+                    ),
                   ),
                 ),
                 backgroundColor: Color(0xffBDF2F2),
